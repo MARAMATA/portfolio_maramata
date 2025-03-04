@@ -4,7 +4,7 @@ services:
     git:
       branch: main
       repo_clone_url: "https://github.com/MARAMATA/portfolio_md.git"
-      source_dir: backend
+      dir: backend
     build_command: "pip install -r requirements.txt"
     run_command: "gunicorn --bind 0.0.0.0:5001 app:app"
     envs:
@@ -28,7 +28,7 @@ services:
     git:
       branch: main
       repo_clone_url: "https://github.com/MARAMATA/portfolio_md.git"
-      source_dir: frontend
+      dir: frontend
     build_command: "npm install && npm run build"
     run_command: ""
     static_site:
