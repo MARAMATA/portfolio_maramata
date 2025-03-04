@@ -38,5 +38,5 @@ static_sites:
 databases:
   - name: portfoliodb  
     engine: PG       
-    version: "17"
+    version: "15"
     size: "db-s-1vcpu-1gb"
