@@ -22,6 +22,13 @@ services:
       - key: ADMIN_EMAIL
         value: "maramatad@gmail.com"
     http_port: 5001
+    ingress:
+      rules:
+        - type: HTTP
+          component: backend
+          match:
+            path:
+              prefix: "/api/"  # ✅ Le backend répondra uniquement sur /api/
 
 static_sites:
   - name: frontend
@@ -30,6 +37,13 @@ static_sites:
       repo_clone_url: "https://github.com/MARAMATA/portfolio_md.git"
     build_command: "cd frontend && npm install && npm run build"
     output_dir: "frontend/build"
+    ingress:
+      rules:
+        - type: HTTP
+          component: frontend
+          match:
+            path:
+              prefix: "/"  # ✅ Le frontend sera accessible sur /
 
 databases:
   - name: portfoliodb  
