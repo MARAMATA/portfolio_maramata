@@ -1,0 +1,41 @@
+name: mon-portfolio
+services:
+  - name: backend
+    git:
+      branch: main
+      repo_clone_url: "https://github.com/MARAMATA/portfolio_md.git"
+      root_dir: backend
+    build_command: "pip install -r requirements.txt"
+    run_command: "gunicorn --bind 0.0.0.0:5001 app:app"
+    envs:
+      - key: DATABASE_URL
+        value: "postgresql+psycopg2://maramata:maramata@localhost:5432/portfolio_db"
+      - key: JWT_SECRET_KEY
+        value: "33be23a8558808478c01430936a9a30b506ee2dd24b66da5c4c60db6f9a133d3"
+      - key: SMTP_SERVER
+        value: "smtp.gmail.com"
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        value: "maramatad@gmail.com"
+      - key: SMTP_PASSWORD
+        value: "yatmslxawsvwtzed"
+      - key: ADMIN_EMAIL
+        value: "maramatad@gmail.com"
+    http_port: 5001
+
+  - name: frontend
+    git:
+      branch: main
+      repo_clone_url: "https://github.com/MARAMATA/portfolio_md.git"
+      root_dir: frontend
+    build_command: "npm install && npm run build"
+    run_command: ""
+    static_site:
+      output_dir: build
+
+databases:
+  - name: portfolio_db
+    engine: postgres
+    version: "17"
+    size: "db-s-1vcpu-1gb"

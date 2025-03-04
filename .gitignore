@@ -1,0 +1,20 @@
+# Fichiers système macOS
+.DS_Store
+
+# Fichiers Python compilés
+__pycache__/
+*.py[cod]
+
+# Fichiers d'environnement (ne pas les inclure dans le dépôt)
+.env
+
+# Fichiers de logs
+*.log
+
+# Node.js : ignore node_modules et caches
+node_modules/
+**/node_modules/
+.cache/
+**/.cache/
+
+
