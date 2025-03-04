@@ -4,12 +4,12 @@ services:
     git:
       branch: main
       repo_clone_url: "https://github.com/MARAMATA/portfolio_md.git"
-    # On se positionne dans le dossier backend avant d’installer et de lancer l’application
+    # Se positionner dans le dossier backend avant d’installer et de lancer l’application
     build_command: "cd backend && pip install -r requirements.txt"
     run_command: "cd backend && gunicorn --bind 0.0.0.0:5001 app:app"
     envs:
       - key: DATABASE_URL
-        value: "postgresql+psycopg2://maramata:maramata@localhost:5432/portfolio_db"
+        value: "postgresql+psycopg2://maramata:maramata@portfolio_db:5432/portfolio_db"
       - key: JWT_SECRET_KEY
         value: "33be23a8558808478c01430936a9a30b506ee2dd24b66da5c4c60db6f9a133d3"
       - key: SMTP_SERVER
