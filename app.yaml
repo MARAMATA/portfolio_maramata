@@ -4,9 +4,9 @@ services:
     git:
       branch: main
       repo_clone_url: "https://github.com/MARAMATA/portfolio_md.git"
-      dir: backend
-    build_command: "pip install -r requirements.txt"
-    run_command: "gunicorn --bind 0.0.0.0:5001 app:app"
+    # On se déplace dans le dossier backend avant d’installer et de lancer l’application
+    build_command: "cd backend && pip install -r requirements.txt"
+    run_command: "cd backend && gunicorn --bind 0.0.0.0:5001 app:app"
     envs:
       - key: DATABASE_URL
         value: "postgresql+psycopg2://maramata:maramata@localhost:5432/portfolio_db"
@@ -28,11 +28,12 @@ services:
     git:
       branch: main
       repo_clone_url: "https://github.com/MARAMATA/portfolio_md.git"
-      dir: frontend
-    build_command: "npm install && npm run build"
+    # On se déplace dans le dossier frontend pour lancer la construction
+    build_command: "cd frontend && npm install && npm run build"
     run_command: ""
     static_site:
-      output_dir: build
+      # Le dossier de sortie est celui généré par votre build, ici "frontend/build"
+      output_dir: "frontend/build"
 
 databases:
   - name: portfolio_db
