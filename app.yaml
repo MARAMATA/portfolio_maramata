@@ -3,7 +3,7 @@ services:
   - name: backend
     git:
       branch: main
-      repo_clone_url: "https://github.com/MARAMATA/portfolio_md.git"
+      repo_clone_url: "https://github.com/MARAMATA/portfolio_maramata.git"
     build_command: "cd backend && pip install -r requirements.txt"
     run_command: "cd backend && gunicorn --bind 0.0.0.0:5001 app:app"
     envs:
@@ -22,14 +22,18 @@ services:
       - key: ADMIN_EMAIL
         value: "maramatad@gmail.com"
     http_port: 5001
+    routes:
+      - path: "/api"  # ✅ Le backend sera accessible via /api
 
 static_sites:
   - name: frontend
     git:
       branch: main
-      repo_clone_url: "https://github.com/MARAMATA/portfolio_md.git"
+      repo_clone_url: "https://github.com/MARAMATA/portfolio_maramata.git"
     build_command: "cd frontend && npm install && npm run build"
     output_dir: "frontend/build"
+    routes:
+      - path: "/"  # ✅ Le frontend sera accessible à la racine
 
 databases:
   - name: portfoliodb  
