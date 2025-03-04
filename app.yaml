@@ -4,7 +4,6 @@ services:
     git:
       branch: main
       repo_clone_url: "https://github.com/MARAMATA/portfolio_md.git"
-    # Se positionner dans le dossier backend avant d’installer et de lancer l’application
     build_command: "cd backend && pip install -r requirements.txt"
     run_command: "cd backend && gunicorn --bind 0.0.0.0:5001 app:app"
     envs:
@@ -34,7 +33,6 @@ static_sites:
 
 databases:
   - name: portfolio_db
-    engine: postgresql
+    engine: PG  # ✅ Correction ici
     version: "17"
     size: "db-s-1vcpu-1gb"
-
