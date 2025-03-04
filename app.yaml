@@ -34,7 +34,7 @@ static_sites:
 
 databases:
   - name: portfolio_db
-    engine: pg
+    engine: postgresql
     version: "17"
     size: "db-s-1vcpu-1gb"
 
