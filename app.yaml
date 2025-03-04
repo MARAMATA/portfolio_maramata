@@ -4,6 +4,8 @@ services:
     git:
       branch: main
       repo_clone_url: "https://github.com/MARAMATA/portfolio_maramata.git"
+    buildpacks:  # ✅ Ajout des buildpacks pour une détection correcte
+      - "heroku/python"
     build_command: "cd backend && pip install -r requirements.txt"
     run_command: "cd backend && gunicorn --bind 0.0.0.0:5001 app:app"
     envs:
@@ -30,6 +32,8 @@ static_sites:
     git:
       branch: main
       repo_clone_url: "https://github.com/MARAMATA/portfolio_maramata.git"
+    buildpacks:  # ✅ Ajout des buildpacks pour garantir la détection du frontend
+      - "heroku/nodejs"
     build_command: "cd frontend && npm install && npm run build"
     output_dir: "frontend/build"
     routes:
@@ -37,6 +41,6 @@ static_sites:
 
 databases:
   - name: portfoliodb  
-    engine: PG       
-    version: "15"
+    engine: POSTGRES  # ✅ DigitalOcean accepte "POSTGRES" en majuscules, pas "PG"
+    version: "15"  # ✅ DigitalOcean ne supporte pas "17", on utilise "15"
     size: "db-s-1vcpu-1gb"
