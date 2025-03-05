@@ -39,6 +39,6 @@ static_sites:
 
 databases:
   - name: portfoliodb  
-    engine: POSTGRES
+    engine: PG
     version: "15"  # ✅ DigitalOcean supporte PostgreSQL 15
     size: "db-s-1vcpu-1gb"
