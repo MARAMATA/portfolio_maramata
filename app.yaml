@@ -4,6 +4,7 @@ services:
     git:
       branch: main
       repo_clone_url: "https://github.com/MARAMATA/portfolio_maramata.git"
+
     build_command: "cd backend && pip install -r requirements.txt"
     run_command: "cd backend && gunicorn --bind 0.0.0.0:5001 app:app"
     envs:
@@ -30,8 +31,7 @@ static_sites:
     git:
       branch: main
       repo_clone_url: "https://github.com/MARAMATA/portfolio_maramata.git"
-    buildpacks:  # ✅ Ajout des buildpacks pour garantir la détection du frontend
-      - "heroku/nodejs"
+
     build_command: "cd frontend && npm install && npm run build"
     output_dir: "frontend/build"
     routes:
